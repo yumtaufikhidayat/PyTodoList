@@ -1,0 +1,1 @@
+This project build to complete [Prompt Engineering for Software Developer](https://www.dicoding.com/academies/753/) course held by Dicoding. Please do not use for any purposes instead of give the credit to author.
