@@ -8,7 +8,7 @@ def menu():
 
 
 def main():
-    tasks = [  # Contoh data dummy
+    tasks = [
         {
             "id": 1,
             "title": "Belajar dasar Python",
@@ -30,9 +30,9 @@ def main():
         choice = input("Masukkan pilihan Anda: ")
 
         if choice == '1':
-            lihat_semua_tugas(tasks)
+            see_all_tasks(tasks)
         elif choice == '2':
-            # Logika untuk menambahkan tugas
+            add_new_tasks(tasks)
             pass
         elif choice == '3':
             # Logika untuk menandai tugas selesai
@@ -46,8 +46,7 @@ def main():
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
 
-# Fungsi untuk melihat semua tugas
-def lihat_semua_tugas(tasks):
+def see_all_tasks(tasks):
     if not tasks:
         print("\nBelum ada tugas yang ditambahkan.")
         return
@@ -60,6 +59,23 @@ def lihat_semua_tugas(tasks):
         print(f"Status        : {task['status']}")
         print(f"Estimasi Waktu: {task['estimasi_waktu_pengerjaan']} menit")
         print("-"*50)
+
+
+def add_new_tasks(task):
+    title = input("Masukkan judul tugas: ")
+    description = input("Masukkan deskripsi tugas: ")
+    status = input("Masukkan status tugas (Selesai/Belum Selesai): ")
+    estimasi_waktu = input("Masukkan estimasi waktu pengerjaan (menit): ")
+
+    new_task = {
+        "id": len(task) + 1,  # Auto-increment ID
+        "title": title,
+        "description": description,
+        "status": status,
+        "estimasi_waktu_pengerjaan": estimasi_waktu
+    }
+    task.append(new_task)
+    print("Tugas berhasil ditambahkan!")
 
 if __name__ == "__main__":
     main()
