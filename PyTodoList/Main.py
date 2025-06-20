@@ -38,7 +38,7 @@ def main():
             mark_complete(tasks)
             pass
         elif choice == '4':
-            # Logika untuk menghapus tugas
+            delete_task(tasks)
             pass
         elif choice == '5':
             print("Terima kasih telah menggunakan aplikasi To-Do List.")
@@ -60,28 +60,38 @@ def see_all_tasks(tasks):
         print(f"Estimasi Waktu: {task['estimasi_waktu_pengerjaan']} menit")
         print("-"*50)
 
-def add_new_tasks(task):
+def add_new_tasks(tasks):
     title = input("Masukkan judul tugas: ")
     description = input("Masukkan deskripsi tugas: ")
     status = input("Masukkan status tugas (Selesai/Belum Selesai): ")
     estimasi_waktu = input("Masukkan estimasi waktu pengerjaan (menit): ")
 
     new_task = {
-        "id": len(task) + 1,  # Auto-increment ID
+        "id": len(tasks) + 1,  # Auto-increment ID
         "title": title,
         "description": description,
         "status": status,
         "estimasi_waktu_pengerjaan": estimasi_waktu
     }
-    task.append(new_task)
+    tasks.append(new_task)
     print("Tugas berhasil ditambahkan!")
 
-def mark_complete(task):
+def mark_complete(tasks):
     id_tugas = int(input("Masukkan ID tugas yang ingin ditandai selesai: "))
-    for tugas_item in task:
+    for tugas_item in tasks:
         if tugas_item["id"] == id_tugas:
             tugas_item["status"] = "Selesai"
             print("Tugas berhasil diperbarui menjadi selesai!")
+            return
+    print("ID tugas tidak ditemukan.")
+
+def delete_task(tasks):
+    see_all_tasks(tasks)
+    id_tugas = int(input("Masukkan ID tugas yang ingin dihapus: "))
+    for tugas_item in tasks:
+        if tugas_item["id"] == id_tugas:
+            tasks.remove(tugas_item)
+            print("Tugas berhasil dihapus!")
             return
     print("ID tugas tidak ditemukan.")
 
