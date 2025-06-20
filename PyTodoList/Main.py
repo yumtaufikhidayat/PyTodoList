@@ -35,7 +35,7 @@ def main():
             add_new_tasks(tasks)
             pass
         elif choice == '3':
-            # Logika untuk menandai tugas selesai
+            mark_complete(tasks)
             pass
         elif choice == '4':
             # Logika untuk menghapus tugas
@@ -60,7 +60,6 @@ def see_all_tasks(tasks):
         print(f"Estimasi Waktu: {task['estimasi_waktu_pengerjaan']} menit")
         print("-"*50)
 
-
 def add_new_tasks(task):
     title = input("Masukkan judul tugas: ")
     description = input("Masukkan deskripsi tugas: ")
@@ -76,6 +75,15 @@ def add_new_tasks(task):
     }
     task.append(new_task)
     print("Tugas berhasil ditambahkan!")
+
+def mark_complete(task):
+    id_tugas = int(input("Masukkan ID tugas yang ingin ditandai selesai: "))
+    for tugas_item in task:
+        if tugas_item["id"] == id_tugas:
+            tugas_item["status"] = "Selesai"
+            print("Tugas berhasil diperbarui menjadi selesai!")
+            return
+    print("ID tugas tidak ditemukan.")
 
 if __name__ == "__main__":
     main()
